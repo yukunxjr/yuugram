@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yuugram</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  <%# ログインしていないユーザーにはNavbarを表示しないようにしていきます。 %>
+  <%= render 'layouts/navbar' if current_user %>
+  
+  <% if flash[:notice] %>
+      <div class="alert alert-info">
+        <%= flash[:notice] %>
+      </div>
+  <% end %>
+  <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+  <% end %>
+    <%= yield %>
+
+  <%= render 'layouts/footer' %>
+  </body>
+</html>
