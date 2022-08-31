@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+
+  # オブジェクトが削除されるときに、関連付けられたオブジェクトのdestroyメソッドが実行されます。
+  # つまり今回で言うと、ユーザーが削除されたら、そのユーザーに紐づく投稿も削除します。
+  has_many :posts, dependent: :destroy
+
+  has_many :likes
+
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
